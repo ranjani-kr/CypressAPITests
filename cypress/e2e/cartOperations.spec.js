@@ -43,6 +43,18 @@ describe('Cart Operations - Creation and Deletion',() => {
                 expect(response.status).to.eq(204);
             });
 
+            // Step 5: Verify the Cart is Deleted
+            cy.request({
+                method: "GET",
+                url: "/api/cart",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            }).then((response) => {
+                // Validating the "No cart found" message in the response indicates that the cart is deleted
+                expect(response.body.message).to.be.eq("No cart found");
+            });
+
         });
 
     });
