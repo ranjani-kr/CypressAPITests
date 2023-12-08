@@ -5,7 +5,6 @@ describe('User SignUp Flow', () => {
         const uniqueEmail = `abc${Date.now()}@gmail.com`;
       cy.request({
         method:"POST",
-      
         url:"/api/auth/signup",
         body:{
             email : uniqueEmail,
