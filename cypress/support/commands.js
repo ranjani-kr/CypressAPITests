@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// -- This is user signup custom command
+Cypress.Commands.add('userSignUp',(email,password) => {
+    const uniqueEmail = `abc${Date.now()}@gmail.com`
+    return cy.request({
+        method : "POST",
+        url : "/api/auth/signup",
+        body:{
+            email : uniqueEmail,
+            password : password,
+              },
+    }).then((response) => {
+        return{
+            statusCode : response.status,
+            accessToken: response.body.data.session.access_token,
+        };
+    });
+
+ });

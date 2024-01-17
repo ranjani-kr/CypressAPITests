@@ -7,5 +7,7 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/**.spec.{js,jsx,ts,tsx}",
     baseUrl: "https://www.apicademy.dev/",
+    
   },
+
 });
