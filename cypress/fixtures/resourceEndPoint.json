@@ -1,0 +1,8 @@
+{
+    "auth": {
+        "signUp": {
+            "method": "POST",
+            "url": "/api/auth/signup"
+        }
+    }
+}

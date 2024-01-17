@@ -26,19 +26,24 @@
 
 // -- This is user signup custom command
 Cypress.Commands.add('userSignUp',(email,password) => {
+    //Fetch endpoint information from the fixture 
+    cy.fixture('resourceEndpoint.json').then((endpoints) =>{
+    //Destructure to get method and url for the fixture
+    const{method,url} = endpoints.auth.signUp;
+   
     const uniqueEmail = `abc${Date.now()}@gmail.com`
-    return cy.request({
-        method : "POST",
-        url : "/api/auth/signup",
+        cy.request({
+        method : method,
+        url : url,
         body:{
             email : uniqueEmail,
             password : password,
               },
-    }).then((response) => {
+        }).then((response) => {
         return{
             statusCode : response.status,
             accessToken: response.body.data.session.access_token,
         };
+        });
     });
-
- });
+});
